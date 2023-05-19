@@ -14,7 +14,7 @@ class Task {
      
     }
     set priorityLevel(l) {// level [1 to 5] 
-        l = Number(l);
+        
         if (l > 5)
             this.priority = 5;
         else if (l < 1)
@@ -75,7 +75,7 @@ Select an action:
 }
 function addTask() {
     let description = readlineSync.question('Enter your task description ? ');
-    let priority = readlineSync.question('Enter your task Priority Level from 1 to 5 ? ');
+    let priority = Number(readlineSync.question('Enter your task Priority Level from 1 to 5 ? '));
     console.log("Enter your task due Date");
     let day = Number(readlineSync.question('Day: '));
     let month = Number(readlineSync.question('Month: '));//monthIndex from 0(jan) to 11(dec)
@@ -123,16 +123,16 @@ function listCompletedTask() {
     listTask(list);
 }
 function sortByDueDate() {
-    const sorted = tasks.sort(
+  tasks.sort(
         (objA, objB) => Number(objA.dueDate) - Number(objB.dueDate),
     );
-    listTask(sorted);
+    listTask(tasks);
 }
 function sortByPriority() {
-    const sorted = tasks.sort(
-        (p1, p2) => p1.PriorityLevel - p2.PriorityLevel
+    tasks.sort(
+        (p1, p2) => p2.priority - p1.priority
     );
-    listTask(sorted);
+    listTask(tasks);
 }
 function clearAllTasks() {
     tasks.splice(0, tasks.length);
